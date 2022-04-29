@@ -67,17 +67,220 @@ app.post('/login', function(req,res){
     },2000);
   
  })
- app.post('/login', function(req,res){
-
-   
-            return res.redirect('logout.html');}
-          
- )
+ 
 app.get('/',function(req,res){
    res.set({
       'Access-control-Allow-Origin': '*'
    });
    return res.redirect('index.html');
 }).listen(3000)
+
+app.post('/depertment', function(req,res){
+
+   var name =req.body.name;
+  
+  
+
+   var data = {
+      
+      "name":name
+   }
+   db.collection('dept').insertOne(data,function(err, collection){
+   if (err) throw err;
+      console.log("Record inserted Successfully");
+   });
+   return res.send('successfully Added');
+})
+app.get('/depertment', function(req,res){
+
+ 
+  db.collection('dept').find().toArray(function(err, items){
+   if (err) throw err;
+   return res.send(items);
+   });
+  
+})
+app.delete('/depertment', function(req,res){
+   var name =req.body.name;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { name: name };
+  dbo.collection("dept").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+    return res.send('1 document deleted');
+  });
+});
+   
+ })
+
+ app.put('/depertment', function(req,res){
+   var name =req.body.name; var name1 =req.body.name1;
+  
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { name: name };
+  var newvalues = { $set: {name: name1} };
+  dbo.collection("dept").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+    
+  });
+
+  return res.send('1 document updated');
+});
+   
+ })
+app.post('/student', function(req,res){
+
+   var name =req.body.name;
+   var address =req.body.address;
+   
+
+   var data = {
+      
+      "name":name,
+      "address":address
+   }
+   db.collection('student').insertOne(data,function(err, collection){
+   if (err) throw err;
+      console.log("Record inserted Successfully");
+   });
+   return res.send('successfully Added');
+})
+app.get('/student', function(req,res){
+
+ 
+  db.collection('student').find().toArray(function(err, items){
+   if (err) throw err;
+   return res.send(items);
+   });
+  
+})
+
+app.delete('/student', function(req,res){
+   var name =req.body.name;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { name: name };
+  dbo.collection("student").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+    return res.send('1 document deleted');
+  });
+});
+   
+ })
+
+ app.put('/student', function(req,res){
+   var name =req.body.name; var name1 =req.body.name1;
+   var address =req.body.address;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { name: name };
+  var newvalues = { $set: {name: name1, address: address } };
+  dbo.collection("student").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+    
+  });
+
+  return res.send('1 document updated');
+});
+   
+ })
+
+ app.post('/teacher', function(req,res){
+
+   var name =req.body.name;
+   var address =req.body.address;
+   
+
+   var data = {
+      
+      "name":name,
+      "address":address
+   }
+   db.collection('teacher').insertOne(data,function(err, collection){
+   if (err) throw err;
+      console.log("Record inserted Successfully");
+   });
+   return res.send('successfully Added');
+})
+app.get('/teacher', function(req,res){
+
+ 
+  db.collection('teacher').find().toArray(function(err, items){
+   if (err) throw err;
+   return res.send(items);
+   });
+  
+})
+
+app.delete('/teacher', function(req,res){
+   var name =req.body.name;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { name: name };
+  dbo.collection("teacher").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+    return res.send('1 document deleted');
+  });
+});
+   
+ })
+
+ app.put('/teacher', function(req,res){
+   var name =req.body.name; var name1 =req.body.name1;
+   var address =req.body.address;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { name: name };
+  var newvalues = { $set: {name: name1, address: address } };
+  dbo.collection("teacher").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+    
+  });
+
+  return res.send('1 document updated');
+});
+   
+ })
+
+
+
+
 
 console.log("server listening at port 3000");
