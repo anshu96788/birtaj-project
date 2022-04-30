@@ -76,14 +76,11 @@ app.get('/',function(req,res){
 }).listen(3000)
 
 app.post('/depertment', function(req,res){
-
+   var course =req.body.course;
    var name =req.body.name;
-  
-  
-
-   var data = {
-      
-      "name":name
+   var data = {  
+      "name":name,
+      "course":course
    }
    db.collection('dept').insertOne(data,function(err, collection){
    if (err) throw err;
@@ -120,7 +117,7 @@ MongoClient.connect(url, function(err, db) {
  })
 
  app.put('/depertment', function(req,res){
-   var name =req.body.name; var name1 =req.body.name1;
+   var name =req.body.name; var name1 =req.body.name1;var course =req.body.course;
   
    var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
@@ -129,7 +126,7 @@ MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("tutorialsPoint");
   var myquery = { name: name };
-  var newvalues = { $set: {name: name1} };
+  var newvalues = { $set: {name: name1,course: course} };
   dbo.collection("dept").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
@@ -145,12 +142,16 @@ app.post('/student', function(req,res){
 
    var name =req.body.name;
    var address =req.body.address;
+ var email =req.body.email;
+ var course =req.body.course;
    
 
    var data = {
       
       "name":name,
-      "address":address
+      "address":address,
+      "email":email,
+      "course":course
    }
    db.collection('student').insertOne(data,function(err, collection){
    if (err) throw err;
@@ -188,7 +189,7 @@ MongoClient.connect(url, function(err, db) {
  })
 
  app.put('/student', function(req,res){
-   var name =req.body.name; var name1 =req.body.name1;
+   var name =req.body.name; var name1 =req.body.name1;var course =req.body.course;var email =req.body.email;
    var address =req.body.address;
    var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
@@ -197,7 +198,7 @@ MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("tutorialsPoint");
   var myquery = { name: name };
-  var newvalues = { $set: {name: name1, address: address } };
+  var newvalues = { $set: {name: name1, address: address,email:email,course:course } };
   dbo.collection("student").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
@@ -215,11 +216,11 @@ MongoClient.connect(url, function(err, db) {
    var name =req.body.name;
    var address =req.body.address;
    
-
+   var salary =req.body.salary;var email =req.body.email;
    var data = {
       
       "name":name,
-      "address":address
+      "address":address,"email":email,"salary":salary
    }
    db.collection('teacher').insertOne(data,function(err, collection){
    if (err) throw err;
@@ -257,8 +258,9 @@ MongoClient.connect(url, function(err, db) {
  })
 
  app.put('/teacher', function(req,res){
-   var name =req.body.name; var name1 =req.body.name1;
+   var name =req.body.name; var name1 =req.body.name1; var name =req.body.name;
    var address =req.body.address;
+   var email =req.body.email;var salary =req.body.salary;
    var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
@@ -266,7 +268,7 @@ MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("tutorialsPoint");
   var myquery = { name: name };
-  var newvalues = { $set: {name: name1, address: address } };
+  var newvalues = { $set: {name: name1, address: address , email:email,salary:salary} };
   dbo.collection("teacher").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
@@ -280,7 +282,69 @@ MongoClient.connect(url, function(err, db) {
  })
 
 
+ app.post('/addmission', function(req,res){
+   var course =req.body.course;
+   var fee =req.body.fee;
+   var data = {  
+      "fee":fee,
+      "course":course
+   }
+   db.collection('addmission').insertOne(data,function(err, collection){
+   if (err) throw err;
+      console.log("Record inserted Successfully");
+   });
+   return res.send('successfully Added');
+})
+app.get('/addmission', function(req,res){
 
+ 
+  db.collection('addmission').find().toArray(function(err, items){
+   if (err) throw err;
+   return res.send(items);
+   });
+  
+})
+app.delete('/addmission', function(req,res){
+   var course =req.body.course;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { course: course };
+  dbo.collection("addmission").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+    return res.send('1 document deleted');
+  });
+});
+   
+ })
+
+ app.put('/addmission', function(req,res){
+   var course =req.body.course; var course1 =req.body.course1;var fee =req.body.fee;
+  
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { course: course };
+  var newvalues = { $set: {course: course1,fee: fee} };
+  dbo.collection("addmission").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+    
+  });
+
+  return res.send('1 document updated');
+});
+   
+ })
 
 
 console.log("server listening at port 3000");
