@@ -11,7 +11,7 @@ db.once('open', function(callback){
    console.log("connection succeeded");
 })
 var app=express()
-
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
@@ -40,7 +40,13 @@ app.post('/login', function(req,res){
     var email =req.body.email;
     var pass = req.body.password;
     
- 
+ if(email==="admin@work.com")
+ {
+    if(pass==="Password")
+    {
+      res.redirect('home.html');
+    }
+ }
     var data = {
        
        "email":email,
@@ -52,7 +58,6 @@ app.post('/login', function(req,res){
         items.forEach(element => { 
          
             if(element.email===email){
-            console.log("AAAAAAAAAA")
                 if(element.password===pass)
                 i=1 
             }
@@ -63,7 +68,7 @@ app.post('/login', function(req,res){
             console.log(i)
             return res.redirect('error.html');}
             else
-            res.redirect('home.html');
+            res.redirect('home1.html');
     },2000);
   
  })
@@ -74,8 +79,11 @@ app.get('/',function(req,res){
    });
    return res.redirect('index.html');
 }).listen(3000)
-
+app.get('/dept/edit/:id', function(req,res){
+   console.log(req.url)
+})
 app.post('/depertment', function(req,res){
+   var i=0
    var course =req.body.course;
    var name =req.body.name;
    var data = {  
@@ -84,16 +92,19 @@ app.post('/depertment', function(req,res){
    }
    db.collection('dept').insertOne(data,function(err, collection){
    if (err) throw err;
-      console.log("Record inserted Successfully");
+  i=1
    });
-   return res.send('successfully Added');
+   if(i==0)
+ return  res.redirect('home.html');
+ else
+ return res.redirect('error1.html');
 })
 app.get('/depertment', function(req,res){
 
  
   db.collection('dept').find().toArray(function(err, items){
    if (err) throw err;
-   return res.send(items);
+   res.render('user-list', { title: 'User List', userData: items});
    });
   
 })
