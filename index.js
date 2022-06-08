@@ -68,7 +68,7 @@ app.post('/login', function(req,res){
             console.log(i)
             return res.redirect('error.html');}
             else
-            res.redirect('home1.html');
+            res.redirect('home.html');
     },2000);
   
  })
@@ -166,16 +166,20 @@ app.post('/student', function(req,res){
    }
    db.collection('student').insertOne(data,function(err, collection){
    if (err) throw err;
-      console.log("Record inserted Successfully");
-   });
-   return res.send('successfully Added');
-})
+      i=1
+         });
+         if(i==0)
+         return  res.redirect('home.html');
+         else
+         return res.redirect('error1.html');
+         })
 app.get('/student', function(req,res){
 
  
   db.collection('student').find().toArray(function(err, items){
    if (err) throw err;
-   return res.send(items);
+   res.render('user-list1', { title: 'User List', userData: items});
+   // return res.send(items);
    });
   
 })
@@ -235,16 +239,19 @@ MongoClient.connect(url, function(err, db) {
    }
    db.collection('teacher').insertOne(data,function(err, collection){
    if (err) throw err;
-      console.log("Record inserted Successfully");
-   });
-   return res.send('successfully Added');
-})
+      i=1
+         });
+         if(i==0)
+         return  res.redirect('home.html');
+         else
+         return res.redirect('error1.html');
+         })
 app.get('/teacher', function(req,res){
 
  
   db.collection('teacher').find().toArray(function(err, items){
    if (err) throw err;
-   return res.send(items);
+   res.render('user-list2', { title: 'User List', userData: items});
    });
   
 })
@@ -302,16 +309,19 @@ MongoClient.connect(url, function(err, db) {
    }
    db.collection('addmission').insertOne(data,function(err, collection){
    if (err) throw err;
-      console.log("Record inserted Successfully");
-   });
-   return res.send('successfully Added');
-})
+      i=1
+         });
+         if(i==0)
+         return  res.redirect('home.html');
+         else
+         return res.redirect('error1.html');
+         })
 app.get('/addmission', function(req,res){
 
  
   db.collection('addmission').find().toArray(function(err, items){
    if (err) throw err;
-   return res.send(items);
+   res.render('user-list3', { title: 'User List', userData: items});
    });
   
 })
