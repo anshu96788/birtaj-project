@@ -141,7 +141,7 @@ body {
 
 <ul>
   <li><a class="active" href="home.html">Home</a></li>
-  <li><a href="depertment.html">Add Admission</a></li>
+  <li><a href="salary.html">Add Salary</a></li>
   <li style="float:right"><a href="logout.html">Logout</a></li>
 </ul>
 
@@ -151,8 +151,8 @@ body {
             <table border="1">
                 <tr>
                     <th>S.N</th>
-                    <th>Course Name</th>
-                    <th>Course Fee</th>
+                    <th>Teacher Name</th>
+                    <th>Salary</th>
                    
                     <th>Delete</th>
                 </tr>
@@ -164,8 +164,8 @@ body {
                 %>
                 <tr>
                     <td><%=i; %></td>
-                    <td><%=data.course %></td>
-                    <td><%=data.fee %></td>
+                    <td><%=data.tname %></td>
+                    <td><%=data.salary %></td>
                 
                     <td>   <button onclick="myJavascriptFunction(data.id)" type="button">Delete</button></td>
                     <td><a href="/dept/edit/<%=data.id%>">Delete</a></td>

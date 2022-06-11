@@ -141,33 +141,52 @@ body {
 
 <ul>
   <li><a class="active" href="home.html">Home</a></li>
-  <!-- <li><a href="depertment.html">Depertment</a></li>
-  <li><a href="student.html">Student</a></li>
-  <li><a href="teacher.html">Teacher</a></li> -->
-  <li><a href="Admission.html">Admission</a></li>
+  <li><a href="teacher.html">Add Teacher</a></li>
   <li style="float:right"><a href="logout.html">Logout</a></li>
 </ul>
 
-<div class="main">
-  <form action="/addmission" method="post">
-  <h1>Add Admission details</h1>
-  <input class="box" type="text" name="course" id="course" placeholder="Course Name " required/><br>
-  <input class="box" type="text" name="fee" id="fee" placeholder="Admission Fee" required /><br>
-  
-  <br>
-  <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="Submit" />   <br>
-  </form>
-</div>
 
-  <div class="main">
-    <form action="/addmission" method="get">
-    <h1>View Admission</h1>
-    <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="View Admission" />   <br>
-    </form>
-  </div>
-
-
+    <div class="table-data">
+        <h2>Display Data using Node.js & MySQL</h2>
+            <table border="1">
+                <tr>
+                    <th>S.N</th>
+                    <th>Teacher Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Salary</th>
+                   
+                    <th>Delete</th>
+                </tr>
+                
+                <%
+                if(userData.length!=0){
+                var i=1;
+                userData.forEach(function(data){
+                %>
+                <tr>
+                    <td><%=i; %></td>
+                    <td><%=data.name %></td>
+                    <td><%=data.address %></td>
+                    <td><%=data.email %></td>
+                    <td><%=data.salary %></td>
+                
+                    <td>   <button onclick="myJavascriptFunction(data.id)" type="button">Delete</button></td>
+                    <td><a href="/dept/edit/<%=data.id%>">Delete</a></td>
+                </tr>
+                <%  i++; }) %>
+                <% } else{ %>
+                    <tr>
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                <% } %>
+            </table>
+            </div>
 </body>
+
 </html>
-
-
+<script>
+    function myJavascriptFunction(id) {
+     console.log(IDBIndex)
+    }
+    </script>

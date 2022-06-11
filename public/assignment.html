@@ -144,15 +144,15 @@ body {
   <!-- <li><a href="depertment.html">Depertment</a></li>
   <li><a href="student.html">Student</a></li>
   <li><a href="teacher.html">Teacher</a></li> -->
-  <li><a href="Admission.html">Admission</a></li>
+  <li><a href="assignment.html">Assignment</a></li>
   <li style="float:right"><a href="logout.html">Logout</a></li>
 </ul>
 
 <div class="main">
-  <form action="/addmission" method="post">
-  <h1>Add Admission details</h1>
-  <input class="box" type="text" name="course" id="course" placeholder="Course Name " required/><br>
-  <input class="box" type="text" name="fee" id="fee" placeholder="Admission Fee" required /><br>
+  <form action="/assignment" method="post">
+  <h1>Add Assignment details</h1>
+  <input class="box" type="text" name="cname" id="cname" placeholder="Course Name " required/><br>
+  <input class="box" type="text" name="aname" id="fanameee" placeholder="Assignment Name" required /><br>
   
   <br>
   <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="Submit" />   <br>
@@ -160,8 +160,8 @@ body {
 </div>
 
   <div class="main">
-    <form action="/addmission" method="get">
-    <h1>View Admission</h1>
+    <form action="/assignment" method="get">
+    <h1>View Assignment</h1>
     <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="View Admission" />   <br>
     </form>
   </div>

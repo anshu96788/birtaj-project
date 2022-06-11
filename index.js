@@ -83,7 +83,7 @@ app.get('/dept/edit/:id', function(req,res){
    console.log(req.url)
 })
 app.post('/depertment', function(req,res){
-   var i=0
+   var i=0;
    var course =req.body.course;
    var name =req.body.name;
    var data = {  
@@ -104,7 +104,7 @@ app.get('/depertment', function(req,res){
  
   db.collection('dept').find().toArray(function(err, items){
    if (err) throw err;
-   res.render('user-list', { title: 'User List', userData: items});
+   res.render('depertment', { title: 'User List', userData: items});
    });
   
 })
@@ -150,7 +150,7 @@ MongoClient.connect(url, function(err, db) {
    
  })
 app.post('/student', function(req,res){
-
+   var i=0;
    var name =req.body.name;
    var address =req.body.address;
  var email =req.body.email;
@@ -178,7 +178,7 @@ app.get('/student', function(req,res){
  
   db.collection('student').find().toArray(function(err, items){
    if (err) throw err;
-   res.render('user-list1', { title: 'User List', userData: items});
+   res.render('student', { title: 'User List', userData: items});
    // return res.send(items);
    });
   
@@ -227,7 +227,7 @@ MongoClient.connect(url, function(err, db) {
  })
 
  app.post('/teacher', function(req,res){
-
+   var i=0;
    var name =req.body.name;
    var address =req.body.address;
    
@@ -251,7 +251,7 @@ app.get('/teacher', function(req,res){
  
   db.collection('teacher').find().toArray(function(err, items){
    if (err) throw err;
-   res.render('user-list2', { title: 'User List', userData: items});
+   res.render('teacher', { title: 'User List', userData: items});
    });
   
 })
@@ -301,11 +301,13 @@ MongoClient.connect(url, function(err, db) {
 
 
  app.post('/addmission', function(req,res){
+   var i=0;
    var course =req.body.course;
    var fee =req.body.fee;
    var data = {  
-      "fee":fee,
-      "course":course
+      
+      "course":course,
+      "fee":fee
    }
    db.collection('addmission').insertOne(data,function(err, collection){
    if (err) throw err;
@@ -321,7 +323,7 @@ app.get('/addmission', function(req,res){
  
   db.collection('addmission').find().toArray(function(err, items){
    if (err) throw err;
-   res.render('user-list3', { title: 'User List', userData: items});
+   res.render('admission', { title: 'User List', userData: items});
    });
   
 })
@@ -367,5 +369,212 @@ MongoClient.connect(url, function(err, db) {
    
  })
 
+ app.post('/assignment', function(req,res){
+   var i=0;
+   var aname =req.body.aname;
+   var cname =req.body.cname;
+   var data = {  
+      "cname":cname,
+      "aname":aname
+   }
+   db.collection('assignment').insertOne(data,function(err, collection){
+   if (err) throw err;
+  i=1
+   });
+   if(i==0)
+ return  res.redirect('home.html');
+ else
+ return res.redirect('error1.html');
+})
+app.get('/assignment', function(req,res){
+
+ 
+  db.collection('assignment').find().toArray(function(err, items){
+   if (err) throw err;
+   res.render('assignment', { title: 'User List', userData: items});
+   });
+  
+})
+app.delete('/assignment', function(req,res){
+   var aname =req.body.aname;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { aname: aname };
+  dbo.collection("assignment").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+    return res.send('1 document deleted');
+  });
+});
+   
+ })
+
+ app.put('/assignment', function(req,res){
+   var aname =req.body.aname; var name1 =req.body.name1;var cname =req.body.cname;
+  
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { cname: cname };
+  var newvalues = { $set: {cname: name1,aname: aname} };
+  dbo.collection("assignment").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+    
+  });
+
+  return res.send('1 document updated');
+});
+   
+ })
+
+ app.post('/salary', function(req,res){
+   var i=0;
+   var tname =req.body.tname;
+   var salary =req.body.salary;
+   var data = {  
+      "tname":tname,
+      "salary":salary
+   }
+   db.collection('salary').insertOne(data,function(err, collection){
+   if (err) throw err;
+  i=1
+   });
+   if(i==0)
+ return  res.redirect('home.html');
+ else
+ return res.redirect('error1.html');
+})
+app.get('/salary', function(req,res){
+
+ 
+  db.collection('salary').find().toArray(function(err, items){
+   if (err) throw err;
+   res.render('salary', { title: 'User List', userData: items});
+   });
+  
+})
+app.delete('/salary', function(req,res){
+   var tname =req.body.tname;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { tname: tname };
+  dbo.collection("salary").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+    return res.send('1 document deleted');
+  });
+});
+   
+ })
+
+ app.put('/salary', function(req,res){
+   var tname =req.body.tname; var name1 =req.body.name1; var salary =req.body.salary;
+  
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { tname: tname };
+  var newvalues = { $set: {tname: name1,salary: salary} };
+  dbo.collection("salary").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+    
+  });
+
+  return res.send('1 document updated');
+});
+   
+ })
+
+
+
+ app.post('/accountant', function(req,res){
+   var i=0;
+   var accname =req.body.accname;
+   var sname =req.body.sname;
+   var astatus =req.body.astatus;
+   var data = {  
+      "accname":accname,
+      "sname": sname,
+      "astatus":astatus
+   }
+   db.collection('accountant').insertOne(data,function(err, collection){
+   if (err) throw err;
+  i=1
+   });
+   if(i==0)
+ return  res.redirect('home.html');
+ else
+ return res.redirect('error1.html');
+})
+app.get('/accountant', function(req,res){
+
+ 
+  db.collection('accountant').find().toArray(function(err, items){
+   if (err) throw err;
+   res.render('accountant', { title: 'User List', userData: items});
+   });
+  
+})
+app.delete('/accountant', function(req,res){
+   var accname =req.body.accname;
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { accname: accname };
+  dbo.collection("accountant").deleteOne(myquery, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    db.close();
+    return res.send('1 document deleted');
+  });
+});
+   
+ })
+
+ app.put('/accountant', function(req,res){
+   var accname =req.body.accname; var name1 =req.body.name1; var sname =req.body.sname; var astatus = req.body.astatus;
+  
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("tutorialsPoint");
+  var myquery = { accname: accname };
+  var newvalues = { $set: {accname: name1,sname: sname, astatus: astatus} };
+  dbo.collection("accountant").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+    
+  });
+
+  return res.send('1 document updated');
+});
+   
+ })
 
 console.log("server listening at port 3000");

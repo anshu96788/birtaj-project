@@ -141,31 +141,31 @@ body {
 
 <ul>
   <li><a class="active" href="home.html">Home</a></li>
-  <!-- <li><a href="depertment.html">Depertment</a></li>
-  <li><a href="student.html">Student</a></li>
-  <li><a href="teacher.html">Teacher</a></li> -->
-  <li><a href="Admission.html">Admission</a></li>
+  <!-- <li><a href="depertment.html">Depertment</a></li> -->
+  <li><a href="salary.html">Salary</a></li>
+  <!-- <li><a href="teacher.html">Teacher</a></li> -->
+  <!-- <li><a href="Admission.html">Admission</a></li> -->
   <li style="float:right"><a href="logout.html">Logout</a></li>
 </ul>
 
+
 <div class="main">
-  <form action="/addmission" method="post">
-  <h1>Add Admission details</h1>
-  <input class="box" type="text" name="course" id="course" placeholder="Course Name " required/><br>
-  <input class="box" type="text" name="fee" id="fee" placeholder="Admission Fee" required /><br>
-  
+  <form action="/salary" method="post">
+  <h1>Add salary details</h1>
+  <input class="box" type="text" name="tname" id="tname" placeholder="Teacher Name" required /><br>
+  <input class="box" type="text" name="salary" id="salary" placeholder="Salary" required/><br>
+
   <br>
   <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="Submit" />   <br>
   </form>
 </div>
 
   <div class="main">
-    <form action="/addmission" method="get">
-    <h1>View Admission</h1>
-    <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="View Admission" />   <br>
+    <form action="/salary" method="get">
+    <h1>View Salary</h1>
+    <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="View Salary" />   <br>
     </form>
   </div>
-
 
 </body>
 </html>
