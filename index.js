@@ -79,9 +79,28 @@ app.get('/',function(req,res){
    });
    return res.redirect('index.html');
 }).listen(3000)
+
+
 app.get('/dept/edit/:id', function(req,res){
-   console.log(req.url)
-})
+  var name1 = req.url.split("/")
+  var name =name1[name1.length-1]
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+      var dbo = db.db("tutorialsPoint"); 
+      var myquery = { name: name };
+      dbo.collection("dept").deleteOne(myquery, function(err, obj) {
+        if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+        return res.send('1 document deleted');
+  
+      });
+    });
+  })  
+  //  console.log(req.url)
 app.post('/depertment', function(req,res){
    var i=0;
    var course =req.body.course;
@@ -149,6 +168,26 @@ MongoClient.connect(url, function(err, db) {
 });
    
  })
+
+ app.get('/student/edit/:id', function(req,res){
+  var name1 = req.url.split("/")
+  var name =name1[name1.length-1]
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+      var dbo = db.db("tutorialsPoint"); 
+      var myquery = { name: name };
+      dbo.collection("student").deleteOne(myquery, function(err, obj) {
+        if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+       // return res.send('1 document deleted');
+  
+      });
+    });
+  })
 app.post('/student', function(req,res){
    var i=0;
    var name =req.body.name;
@@ -226,6 +265,26 @@ MongoClient.connect(url, function(err, db) {
    
  })
 
+ app.get('/teacher/edit/:id', function(req,res){
+  var name1 = req.url.split("/")
+  var name =name1[name1.length-1]
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+      var dbo = db.db("tutorialsPoint"); 
+      var myquery = { name: name };
+      dbo.collection("teacher").deleteOne(myquery, function(err, obj) {
+        if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+       // return res.send('1 document deleted');
+  
+      });
+    });
+  })
+
  app.post('/teacher', function(req,res){
    var i=0;
    var name =req.body.name;
@@ -300,6 +359,27 @@ MongoClient.connect(url, function(err, db) {
  })
 
 
+ app.get('/addmission/edit/:id', function(req,res){
+  var course1 = req.url.split("/")
+  var course =course1[course1.length-1]
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+      var dbo = db.db("tutorialsPoint"); 
+      var myquery = { course: course };
+      dbo.collection("addmission").deleteOne(myquery, function(err, obj) {
+        if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+       // return res.send('1 document deleted');
+  
+      });
+    });
+  })
+
+
  app.post('/addmission', function(req,res){
    var i=0;
    var course =req.body.course;
@@ -369,6 +449,26 @@ MongoClient.connect(url, function(err, db) {
    
  })
 
+ app.get('/assignment/edit/:id', function(req,res){
+  var aname1 = req.url.split("/")
+  var aname =aname1[aname1.length-1]
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+      var dbo = db.db("tutorialsPoint"); 
+      var myquery = { aname: aname };
+      dbo.collection("assignment").deleteOne(myquery, function(err, obj) {
+        if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+       // return res.send('1 document deleted');
+  
+      });
+    });
+  })
+
  app.post('/assignment', function(req,res){
    var i=0;
    var aname =req.body.aname;
@@ -436,6 +536,26 @@ MongoClient.connect(url, function(err, db) {
 });
    
  })
+
+ app.get('/salary/edit/:id', function(req,res){
+  var tname1 = req.url.split("/")
+  var tname =tname1[tname1.length-1]
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+      var dbo = db.db("tutorialsPoint"); 
+      var myquery = { tname: tname };
+      dbo.collection("salary").deleteOne(myquery, function(err, obj) {
+        if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+       // return res.send('1 document deleted');
+  
+      });
+    });
+  })
 
  app.post('/salary', function(req,res){
    var i=0;
@@ -505,7 +625,25 @@ MongoClient.connect(url, function(err, db) {
    
  })
 
+ app.get('/accountant/edit/:id', function(req,res){
+  var accname1 = req.url.split("/")
+  var accname =accname1[accname1.length-1]
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
 
+  MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+      var dbo = db.db("tutorialsPoint"); 
+      var myquery = { accname: accname };
+      dbo.collection("accountant").deleteOne(myquery, function(err, obj) {
+        if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+       // return res.send('1 document deleted');
+  
+      });
+    });
+  })
 
  app.post('/accountant', function(req,res){
    var i=0;

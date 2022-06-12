@@ -168,7 +168,7 @@ body {
                     <td><%=data.course %></td>
                 
                     <td>   <button onclick="myJavascriptFunction(data.id)" type="button">Delete</button></td>
-                    <td><a href="/dept/edit/<%=data.id%>">Delete</a></td>
+                    <td><a href="/dept/edit/<%= data.name%>">Delete</a></td>
                 </tr>
                 <%  i++; }) %>
                 <% } else{ %>
