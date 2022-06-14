@@ -72,10 +72,12 @@ app.post('/login', function(req,res){
             return res.redirect('error.html');}
             else
             {
-               if(type==="Student")
+              if(type==="Student")
                res.redirect('studenthome.html');
                else if(type==="Teacher")
                res.redirect('teacherhome.html');
+               else if(type==="Accountant")
+               res.redirect('accountanthome.html');
                else
                return res.redirect('error.html');
             }
