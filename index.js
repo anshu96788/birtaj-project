@@ -39,15 +39,18 @@ app.post('/login', function(req,res){
 
     var email =req.body.email;
     var pass = req.body.password;
-    
- if(email==="admin@work.com")
+    var type=req.body.type;
+    if(type==="Admin")
+    { 
+       if(email==="admin@work.com")
  {
     if(pass==="Password")
     {
       res.redirect('home.html');
     }
  }
-    var data = {
+ }
+  var data = {
        
        "email":email,
        "password":pass
