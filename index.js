@@ -71,7 +71,15 @@ app.post('/login', function(req,res){
             console.log(i)
             return res.redirect('error.html');}
             else
-            res.redirect('home.html');
+            {
+               if(type==="Student")
+               res.redirect('studenthome.html');
+               else if(type==="Teacher")
+               res.redirect('teacherhome.html');
+               else
+               return res.redirect('error.html');
+            }
+          
     },2000);
   
  })
