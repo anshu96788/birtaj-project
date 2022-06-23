@@ -140,17 +140,34 @@ body {
 <body>
 
 <ul>
-  <li><a class="active" href="accountanthome.html">Home</a></li>
+  <li><a class="active" href="teacherhome.html">Home</a></li>
   <!-- <li><a href="depertment.html">Depertment</a></li>
-  <li><a href="student.html">Student</a></li>
-  <li><a href="teacher.html">Teacher</a></li> -->
-  <li><a href="Admission2.html">Admission</a></li>
-  <!-- <li><a href="assignment.html">Assignment</a></li> -->
-  <li><a href="salary1.html">Salary</a></li>
-  <li><a href="accountant1.html">Accountant</a></li>
+  <li><a href="student.html">Student</a></li> -->
+  <li><a href="teacher1.html">Teacher</a></li>
+  <!-- <li><a href="Admission.html">Admission</a></li> -->
   <li style="float:right"><a href="logout.html">Logout</a></li>
 </ul>
-<h1>Welcome to Accountant Portal</h1>
+
+<div class="main">
+  <form action="/teacher" method="post">
+  <h1>Add teacher details</h1>
+  <input class="box" type="text" name="name" id="name" placeholder="Teacher Name" required /><br>
+  <input class="box" type="text" name="address" id="address" placeholder="Teacher Address" required/><br>
+  <input class="box" type="text" name="email" id="email" placeholder="Teacher E-Mail" required /><br>
+  <input class="box" type="text" name="salary" id="salary" placeholder="Teacher Salary" required/><br>
+  <br>
+  <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="Submit" />   <br>
+  </form>
+</div>
+
+  <!-- <div class="main">
+    <form action="/teacher" method="get">
+    <h1>View Teacher</h1>
+    <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="View Teacher" />   <br>
+    </form>
+  </div> -->
+
+
 </body>
 </html>
 

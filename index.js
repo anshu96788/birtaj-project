@@ -69,7 +69,7 @@ app.post('/login', function(req,res){
     setTimeout(()=>{
         if(i===0){
             console.log(i)
-            return res.redirect('error.html');}
+            return res.redirect('home.html');}
             else
             {
               if(type==="Student")
