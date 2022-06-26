@@ -1,4 +1,4 @@
-# birtaj-project
+# biraj-project
 
 npm i express
 npm i mongoose
