@@ -140,34 +140,74 @@ body {
 <body>
 
 <ul>
-  <li><a class="active" href="accountanthome.html">Home</a></li>
+  <li><a class="active" href="studenthome.html">Home</a></li>
   <!-- <li><a href="depertment.html">Depertment</a></li> -->
-  <li><a href="Admission2.html">Admission</a></li>
-  <!-- <li><a href="salary1.html">Salary</a></li>
-  <li><a href="accountant1.html">Accountant</a></li> -->
+  <li><a href="student1">Student</a></li>
+  <!-- <li><a href="teacher.html">Teacher</a></li> -->
+  <!-- <li><a href="Admission.html">Admission</a></li> -->
   <li style="float:right"><a href="logout.html">Logout</a></li>
 </ul>
 
-<!-- <div class="main">
-  <form action="/addmission" method="post">
-  <h1>Add Admission details</h1>
-  <input class="box" type="text" name="course" id="course" placeholder="Course Name " required/><br>
-  <input class="box" type="text" name="fee" id="fee" placeholder="Admission Fee" required /><br>
-  
+
+<div class="main">
+  <form action="/student" method="post">
+   
+  <h1>Student details</h1>
+
+  <div>
+  <label for="student">Student Name:</label>
+    <select>
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+            <option value='<%=data.name %>'><%=data.name %></option>
+        <%  i++; }) %>
+        <% } else{ %>
+        <% } %>
+    </select>
+</div>
+
+  <input class="box" type="text" name="name" id="name" placeholder="Student Name" required /><br>
+  <input class="box" type="text" name="address" id="address" placeholder="Student Address" required/><br>
+  <input class="box" type="text" name="email" id="email" placeholder="Student E-Mail" required /><br>
+  <input class="box" type="text" name="course" id="course" placeholder="Student Course" required/><br>
   <br>
   <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="Submit" />   <br>
   </form>
-</div> -->
+</div>
 
-  <div class="main">
-    <form action="/addmission1" method="get">
-    <h1>View Admission</h1>
-    <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="View Admission" />   <br>
+  <!-- <div class="main">
+    <form action="/student" method="get">
+    <h1>View Student</h1>
+    <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="View Student" />   <br>
     </form>
-  </div>
-
+  </div> -->
 
 </body>
 </html>
 
+<script>
+  function myJavascriptFunction(id) {
+   console.log(IDBIndex)
+  }
+  </script>
+
+
+<!-- <body>
+    <div>
+        <select>
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(data){
+            %>
+                <option value='<%=data.name %>'><%=data.name %></option>
+            <%  i++; }) %>
+            <% } else{ %>
+            <% } %>
+        </select>
+    </div>
+</body> -->
 

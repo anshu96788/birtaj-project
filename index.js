@@ -201,6 +201,16 @@ MongoClient.connect(url, function(err, db) {
       });
     });
   })
+
+app.get('/student1', function(req,res){
+
+  db.collection('student').find().toArray(function(err, items){
+     if (err) throw err;
+     res.render('student1', { title: 'User List', userData: items});
+     // return res.send(items);
+  });
+})
+
 app.post('/student', function(req,res){
    var i=0;
    var name =req.body.name;
@@ -420,6 +430,17 @@ app.get('/addmission', function(req,res){
    });
   
 })
+
+app.get('/addmission1', function(req,res){
+
+ 
+  db.collection('addmission').find().toArray(function(err, items){
+   if (err) throw err;
+   res.render('admission1', { title: 'User List', userData: items});
+   });
+  
+})
+
 app.delete('/addmission', function(req,res){
    var course =req.body.course;
    var MongoClient = require('mongodb').MongoClient;
@@ -596,6 +617,17 @@ app.get('/salary', function(req,res){
    });
   
 })
+
+app.get('/salary1', function(req,res){
+
+ 
+  db.collection('salary').find().toArray(function(err, items){
+   if (err) throw err;
+   res.render('salary1', { title: 'User List', userData: items});
+   });
+  
+})
+
 app.delete('/salary', function(req,res){
    var tname =req.body.tname;
    var MongoClient = require('mongodb').MongoClient;
