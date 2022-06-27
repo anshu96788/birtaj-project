@@ -35,9 +35,73 @@ app.post('/sign_up', function(req,res){
    });
    return res.redirect('success.html');
 })
+app.post('/sign_upstu', function(req,res){
+
+  var email =req.body.email;
+  var pass = req.body.password;
+  var roll= req.body.roll;
+  
+
+  var data = {
+     "roll": roll,
+     "email":email,
+     "password":pass
+  }
+
+  var i=0
+  db.collection('student').find().toArray(function(err, items) {
+      if(err) throw err;    
+      items.forEach(element => { 
+       
+          if(element.roll===roll){
+             if(element.email===email)
+              i=1 
+          }
+        });         
+  });
+  setTimeout(()=>{
+      if(i===0){
+          console.log(i)
+          return res.redirect('error3.html');}
+          else
+          {
+            console.log(i)
+            var j=0
+            db.collection('details').find().toArray(function(err, items) {
+                if(err) throw err;    
+                items.forEach(element => { 
+                 
+                    if(element.roll===roll){
+                       
+                        j=1 
+                    }
+                  });         
+            });
+            setTimeout(()=>{
+                if(j>0){
+                    console.log(j)
+                    return res.redirect('error2.html');}
+                    else
+                    {
+                      
+                      db.collection('details').insertOne(data,function(err, collection){
+                        if (err) throw err;
+                           console.log("Record inserted Successfully");
+                        });
+                        return res.redirect('success.html');
+                    }
+                  
+            },2000);
+          
+          }
+        
+  },2000);
+
+})
+
 app.post('/login', function(req,res){
 
-    var email =req.body.email;
+    var email =req.body.roll;
     var pass = req.body.password;
     var type=req.body.type;
     if(type==="Admin")
@@ -60,7 +124,7 @@ app.post('/login', function(req,res){
         if(err) throw err;    
         items.forEach(element => { 
          
-            if(element.email===email){
+            if(element.roll===email){
                 if(element.password===pass)
                 i=1 
             }
@@ -69,15 +133,13 @@ app.post('/login', function(req,res){
     setTimeout(()=>{
         if(i===0){
             console.log(i)
-            return res.redirect('home.html');}
+            return res.redirect('error.html');}
             else
             {
-              if(type==="Student")
-               res.redirect('studenthome.html');
+               if(type==="Student")
+               res.render('studenhom', { title: 'User List', userData: email});
                else if(type==="Teacher")
                res.redirect('teacherhome.html');
-               else if(type==="Accountant")
-               res.redirect('accountanthome.html');
                else
                return res.redirect('error.html');
             }
@@ -85,7 +147,7 @@ app.post('/login', function(req,res){
     },2000);
   
  })
- 
+
 app.get('/',function(req,res){
    res.set({
       'Access-control-Allow-Origin': '*'
@@ -218,9 +280,9 @@ app.post('/student', function(req,res){
  var email =req.body.email;
  var course =req.body.course;
    
-
+var roll= req.body.roll;
    var data = {
-      
+      "roll": roll,
       "name":name,
       "address":address,
       "email":email,
