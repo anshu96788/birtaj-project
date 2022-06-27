@@ -151,6 +151,7 @@ body {
             <table border="1">
                 <tr>
                     <th>S.N</th>
+                    <th>Student Roll number</th>
                     <th>Student Name</th>
                     <th>Address</th>
                     <th>Email</th>
@@ -166,13 +167,13 @@ body {
                 %>
                 <tr>
                     <td><%=i; %></td>
+                    <td><%=data.roll %></td>
                     <td><%=data.name %></td>
                     <td><%=data.address %></td>
                     <td><%=data.email %></td>
                     <td><%=data.course %></td>
-                
-                    <td>   <button onclick="myJavascriptFunction(data.id)" type="button">Delete</button></td>
-                    <td><a href="/student/edit/<%=data.name%>">Delete</a></td>
+                    <td><a href="/student/edit_edit/<%=data.roll%>">Edit</a></td>
+                   <td><a href="/student/edit/<%=data.name%>">Delete</a></td>
                 </tr>
                 <%  i++; }) %>
                 <% } else{ %>

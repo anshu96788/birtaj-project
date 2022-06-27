@@ -264,6 +264,41 @@ MongoClient.connect(url, function(err, db) {
     });
   })
 
+
+
+
+
+
+
+
+  app.get('/student/edit_edit/:id', function(req,res){
+    var name1 = req.url.split("/")
+    var name =name1[name1.length-1]
+    var MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb://localhost:27017/";
+  
+    MongoClient.connect(url, function(err, db) {
+       if (err) throw err;
+        var dbo = db.db("tutorialsPoint"); 
+        var myquery = { name: name };
+        dbo.collection('student').find().toArray(function(err, items){
+          if (err) throw err;
+          items.forEach(element => { 
+                 
+            if(element.roll===name){
+               
+              res.render('studentedit', { title: 'User List', userData: element});
+            }
+          });      
+       });
+      });
+    })
+  
+
+
+
+
+
 app.get('/student1', function(req,res){
 
   db.collection('student').find().toArray(function(err, items){
