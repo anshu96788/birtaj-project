@@ -18,8 +18,15 @@ crossorigin="anonymous">
 <div class="row">
 </div>
 <div class="main">
-   <p> <h1 ></h1> <a  class="registerbtn" href="signupstu.html">Click here to Sign up as student</a></h1></p>
-   <p> <h1 ></h1> <a  class="registerbtn" href="signuptec.html">Click here to Sign up as Faculty</a></h1></p>
+   <form action="/sign_upstu" method="post">
+   <h1>SignUp</h1>
+   <input class="box" type="text" name="roll" id="roll" placeholder="Teacher ID" required /><br>
+  <p><b>Note:</b>Your Teacher ID will be your username.</p>
+   <input class="box" type="email" name="email" id="email" placeholder="E-Mail " required /><br>
+   <input class="box" type="password" name="password" id="password" placeholder="Password " required/><br>
+   <br>
+   <input type="submit" id="submitDetails" name="submitDetails" class="registerbtn" value="Submit" />   <br>
+   </form>
    <p> <h1 ></h1> <a  class="registerbtn" href="login.html">Click here to LogIn</a></h1></p>
 <p> <h1></h1> <a   class="registerbtn" href="index.html">Back</a></h1></p>
 
