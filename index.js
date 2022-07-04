@@ -99,6 +99,70 @@ app.post('/sign_upstu', function(req,res){
 
 })
 
+app.post('/sign_upfac', function(req,res){
+
+  var email =req.body.email;
+  var pass = req.body.password;
+  var roll= req.body.roll;
+  
+
+  var data = {
+     "roll": roll,
+     "email":email,
+     "password":pass
+  }
+
+  var i=0
+  db.collection('teacher').find().toArray(function(err, items) {
+      if(err) throw err;    
+      items.forEach(element => { 
+       
+          if(element.roll===roll){
+             if(element.email===email)
+              i=1 
+          }
+        });         
+  });
+  setTimeout(()=>{
+    console.log("JHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+      if(i===0){
+          console.log(i)
+          return res.redirect('errorte.html');}
+          else
+          {
+            console.log(i)
+            var j=0
+            db.collection('details').find().toArray(function(err, items) {
+                if(err) throw err;    
+                items.forEach(element => { 
+                 
+                    if(element.roll===roll){
+                       
+                        j=1 
+                    }
+                  });         
+            });
+            setTimeout(()=>{
+                if(j>0){
+                    console.log(j)
+                    return res.redirect('errortea2.html');}
+                    else
+                    {
+                      
+                      db.collection('details').insertOne(data,function(err, collection){
+                        if (err) throw err;
+                           console.log("Record inserted Successfully");
+                        });
+                        return res.redirect('success.html');
+                    }
+                  
+            },2000);
+          
+          }
+        
+  },2000);
+
+})
 app.post('/login', function(req,res){
 
     var email =req.body.roll;
@@ -139,7 +203,7 @@ app.post('/login', function(req,res){
                if(type==="Student")
                res.render('studenhom', { title: 'User List', userData: email});
                else if(type==="Teacher")
-               res.redirect('teacherhome.html');
+               res.render('teahom', { title: 'User List', userData: email});
                else
                return res.redirect('error.html');
             }
@@ -307,6 +371,22 @@ app.get('/student1', function(req,res){
      // return res.send(items);
   });
 })
+app.post('/studenta', function(req,res1){
+
+  
+   var roll =req.body.roll; var course =req.body.course;var email =req.body.email;
+   var address =req.body.address;
+
+   console.log(roll);
+var myquery = { roll: roll };
+var newvalues = { $set: { address: address,email:email,course:course } };
+db.collection("student").updateOne(myquery, newvalues, function(err, res) {
+  if (err) throw err;
+  return  res1.redirect('student.html');
+  
+  
+});
+ })
 
 app.post('/student', function(req,res){
    var i=0;
@@ -362,28 +442,6 @@ MongoClient.connect(url, function(err, db) {
    
  })
 
- app.put('/student', function(req,res){
-   var name =req.body.name; var name1 =req.body.name1;var course =req.body.course;var email =req.body.email;
-   var address =req.body.address;
-   var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("tutorialsPoint");
-  var myquery = { name: name };
-  var newvalues = { $set: {name: name1, address: address,email:email,course:course } };
-  dbo.collection("student").updateOne(myquery, newvalues, function(err, res) {
-    if (err) throw err;
-    console.log("1 document updated");
-    db.close();
-    
-  });
-
-  return res.send('1 document updated');
-});
-   
- })
 
  app.get('/teacher/edit/:id', function(req,res){
   var name1 = req.url.split("/")
@@ -409,10 +467,10 @@ MongoClient.connect(url, function(err, db) {
    var i=0;
    var name =req.body.name;
    var address =req.body.address;
-   
+   var roll =req.body.roll;
    var salary =req.body.salary;var email =req.body.email;
    var data = {
-      
+      "roll":roll,
       "name":name,
       "address":address,"email":email,"salary":salary
    }

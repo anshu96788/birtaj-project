@@ -116,7 +116,7 @@ body {
 .footer {
   padding: 20px;
   text-align: center;
-  background: #ddd;
+  background: rgb(0, 0, 0);
   margin-top: 20px;
 }
 
@@ -140,55 +140,12 @@ body {
 <body>
 
 <ul>
-  <li><a class="active" href="home.html">Home</a></li>
-  <li><a href="teacher.html">Add Teacher</a></li>
+  <li><a class="active" href="#">Home</a></li>
+ 
   <li style="float:right"><a href="logout.html">Logout</a></li>
 </ul>
-
-
-    <div class="table-data">
-        <h2>Display Data using Node.js & MySQL</h2>
-            <table border="1">
-                <tr>
-                    <th>S.N</th>
-                    <th>Teacher Id</th>
-                    <th>Teacher Name</th>
-                    <th>Address</th>
-                    <th>Email</th>
-                    <th>Salary</th>
-                   
-                    <th>Delete</th>
-                </tr>
-                
-                <%
-                if(userData.length!=0){
-                var i=1;
-                userData.forEach(function(data){
-                %>
-                <tr>
-                    <td><%=i; %></td>
-                    <td><%=data.roll %></td>
-                    <td><%=data.name %></td>
-                    <td><%=data.address %></td>
-                    <td><%=data.email %></td>
-                    <td><%=data.salary %></td>
-                
-                    <td>   <button onclick="myJavascriptFunction(data.id)" type="button">Delete</button></td>
-                    <td><a href="/teacher/edit/<%=data.name%>">Delete</a></td>
-                </tr>
-                <%  i++; }) %>
-                <% } else{ %>
-                    <tr>
-                        <td colspan="7">No Data Found</td>
-                    </tr>
-                <% } %>
-            </table>
-            </div>
+<h1>Welcome <%=userData %> to Teacher Portal</h1>
 </body>
-
 </html>
-<script>
-    function myJavascriptFunction(id) {
-     console.log(IDBIndex)
-    }
-    </script>
+
+
