@@ -37,3 +37,115 @@
     width: 100%;
     opacity: 0.9;
  }
+ 
+
+
+
+
+ body
+{
+	margin: 0px;
+	padding: 0px;
+	background-image: url("background.jpg");
+	background-repeat:none;
+	background-size: 100%;
+	background-attachment:fixed;
+}
+
+.parent
+{
+	width: 1000px;
+	margin: 0 auto;
+	background-color:#F2F2F2;
+	height:auto;
+	overflow:hidden;
+	font-family: helvetica;
+	padding:25px;
+}
+
+.header
+{
+	width: 100%;
+	/*padding: 4px;*/
+	/*background-color: #FD9A33;*/
+	background-color: #E52102;
+	border-radius: 5px;
+}
+
+.header ul li
+{
+	  display: inline-block;
+		margin-right: 10px;
+		padding: 6px;
+		box-sizing: border-box;
+		position: relative;
+		font-family: arial;
+		box-sizing: border-box;
+		/*background-color: black;*/
+}
+
+.header ul li:hover
+{
+	/*border-bottom: 4px solid #4CAF50;*/
+	background-color: #989494;
+}
+
+.header ul li a
+{
+	text-decoration: none;
+	color: white;
+	font-size: 25px;
+}
+
+#about ul
+{
+	position: absolute;
+	display: block;
+	left: 0px;
+	top: 40px;
+	padding: 0px;
+	min-width: 180px;
+	background-color: #FFFFFF;
+	border-radius: 0px;
+	display: none;
+	z-index: 9999;
+}
+
+#about ul li
+{
+	left: 0px;
+	padding: 15px 5px;
+	border: 1px solid #717171;
+	width: 100%;
+	cursor: pointer;
+}
+
+#about:hover .aboutmenu
+{
+	display: block;
+}
+
+#about li a
+{
+	color:#615D5E;
+	text-decoration: none;
+	font-size: 14px;
+
+}
+
+#about li:hover
+{
+	background-color:#EBF0F3;
+}
+
+.parent p
+{
+	text-align: justify;
+	line-height: 21px;
+}
+
+h1,h2,h3
+{
+	color:#0A8E08;
+}
+
